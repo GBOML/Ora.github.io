@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="content">
+        <label>Position</label>
+        <span>
+            <i class="fa-solid fa-location-dot"></i>
+            <p>123 Main Street, City, Country</p>
+        </span>
+    </div>
+
+    <hr />
+
+    <div class="content">
+        <label>Direct contact</label>
+        <span>
+            <i class="fa-solid fa-envelope"></i>
+            <p>ora@company.com</p>
+        </span>
+        <span>
+            <i class="fa-solid fa-phone"></i>
+            <p>+1 (123) 456-7890</p>
+        </span>
+    </div>
+</div>
+
+<style>
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .content > span {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .content > span > i {
+        color: var(--primary-color);
+    }
+
+    hr {
+        margin: 60px 0 40px 0;
+        color: var(--border-color);
+    }
+</style>

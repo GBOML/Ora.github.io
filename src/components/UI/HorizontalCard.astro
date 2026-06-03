@@ -1,0 +1,110 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+    title: string;
+    content: string;
+    icon?: string;
+    iconCircle?: boolean;
+    small?: boolean;
+    image?: ImageMetadata;
+    imageAlt?: string;
+    imageWidth?: string;
+    imagePosition?: 'left' | 'right';
+}
+
+const { title, content, icon, iconCircle = false, small = true, image, imageAlt = "", imageWidth = "35%", imagePosition = 'left' } = Astro.props as Props;
+---
+
+<div class="container">
+    {image && imagePosition === 'left' && 
+        <div class="image-wrapper">
+            <Image src={image} alt={imageAlt} style={`width:${imageWidth};`} class="card-image"/>
+        </div>
+    }
+
+    <div>
+        {icon && <i class={`${icon} ${iconCircle ? 'icon-circle fa-xl' : 'fa-2xl'}`} />}
+        <div class="content">
+            <h3 style={`font-size: ${small ? '1.25rem' : '1.5rem'};}`}>
+                {title}
+            </h3>
+
+            <p style={`font-size: ${small ? '1rem' : '1.125rem'}`}>{content}</p>
+        </div>
+    </div>
+
+    {image && imagePosition === 'right' && 
+        <div class="image-wrapper">
+            <Image src={image} alt={imageAlt} style={`width:${imageWidth};`} class="card-image"/>
+        </div>
+    }
+</div>
+
+<style>
+    .container {
+        width: 100%;
+        height: 100%;
+        padding: 40px 48px;
+        border-radius: 24px;
+        transition: all 0.3s ease-in-out;
+        background-color: var(--custom-white);
+        outline: 1px solid var(--border-color);
+        display: flex;
+        gap: 24px;
+        margin: auto;
+    }
+
+    .container:hover {
+        box-shadow: 0 10px 10px var(--shadow-color);
+        outline: 1px solid rgb(from var(--primary-color) r g b / 0.5);
+        transform: translateY(-5px);
+    }
+
+    .container:hover i {
+        transform: scale(1.1);
+    }
+
+    .image-wrapper {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container:hover .card-image {
+        transform: scale(1.05);
+    }
+
+    i {
+        transition: all 0.3s ease-in-out;
+        color: var(--primary-color);
+    }
+
+    .card-image {
+        transition: all 0.3s ease-in-out;
+        transition-delay: 0.15s;
+    }
+
+    .icon-circle {
+        background-color: rgb(from var(--primary-color) r g b / 0.1);
+        padding: 20px 13px;
+        height: auto;
+        width: auto; 
+        outline: 1px solid rgb(from var(--primary-color) r g b / 0.5);
+        border-radius: 100%;
+    }
+
+    .content {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    h3 {
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+</style>

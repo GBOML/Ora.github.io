@@ -1,0 +1,41 @@
+---
+import VerticalCard from './UI/VerticalCard.astro';
+import user_logo from '../assets/user.png';
+
+const user_links = [
+    { icon: 'fa-brands fa-linkedin', url: 'https://www.linkedin.com/' },
+    { icon: 'fa-brands fa-github', url: 'https://www.github.com/' },
+]
+---
+
+<div class="section-content">
+    <VerticalCard
+        title="John Doe"
+        subtitle="Role"
+        content="Adipisicing eu ipsum sint sint in aute dolor do esse nostrud irure. Dolor minim non magna enim in. Labore anim ullamco tempor labore."
+        image={user_logo}
+        links={user_links}
+    />
+    <VerticalCard
+        title="Jane Smith"
+        subtitle="Role"
+        content="Pariatur veniam tempor sunt dolor pariatur occaecat et quis excepteur amet. Commodo minim eu cupidatat eiusmod amet magna. Eiusmod cillum cillum aliquip in duis incididunt irure cupidatat eu non ut qui."
+        image={user_logo}
+        links={user_links}
+    />
+    <VerticalCard
+        title="Bob Johnson"
+        subtitle="Role"
+        content="Exercitation incididunt dolor ad eiusmod. Nisi veniam ipsum culpa aute aliquip et ad proident ad consequat officia deserunt adipisicing qui. Quis et minim id amet magna minim elit eiusmod fugiat."
+        image={user_logo}
+        links={user_links}
+    />
+</div>
+
+<style>
+    .section-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: var(--grid-gap-container);
+    }
+</style>

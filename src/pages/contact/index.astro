@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import ContactInfos from '../../components/ContactInfos.astro';
+---
+
+<Layout>
+    <section id="#contact">
+        <PageHeader 
+            title="Contact us"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        />
+
+        <div class="container">
+            <ContactForm />
+            <ContactInfos />
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .container { 
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        gap: 60px;
+    }
+
+    @media (max-width: 1024px) {
+        .container {
+            grid-template-columns: 1fr;
+            margin: auto;
+        }
+    }
+</style>

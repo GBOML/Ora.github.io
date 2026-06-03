@@ -1,0 +1,55 @@
+---
+import Button from "./UI/Button.astro";
+---
+
+<section>
+    <div class="contact-us-container">
+        <h2>Ready to try ?</h2>
+
+        <p>Voluptate amet minim Lorem qui est ipsum consectetur est pariatur. Et ullamco sint cupidatat consectetur officia nostrud.</p>
+
+        <div class="button-container">
+            <Button title="Button 1" small={true}/>
+            <Button title="Contact us" basic={false} href="/contact" small={true}/>
+        </div>
+            
+    </div>
+</section>
+
+<style>
+    section {
+        min-height : auto;
+        padding-top: 10px; 
+        padding-bottom: 100px; 
+    }
+
+    .contact-us-container {
+        outline: 1px solid rgb(from var(--primary-color) r g b / 0.2);
+        background-color: rgb(from var(--primary-color) r g b / 0.05);
+        border-radius: 24px;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 90%;
+        margin: auto
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+
+    p {
+		color: var(--text-color-secondary);
+		font-size: 1rem;
+        max-width: 50%;
+        text-align: center;
+	}
+
+    .button-container {
+        display: flex;
+        gap: 20px;
+    }
+</style>

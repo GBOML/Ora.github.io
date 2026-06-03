@@ -1,0 +1,149 @@
+---
+import PageHeader from '../components/PageHeader.astro';
+import HorizontalCard from '../components/UI/HorizontalCard.astro';
+import ImageScreen from '../components/UI/ImageScreen.astro';
+import default_logo from '../assets/default.png';
+---
+
+<section id="#functionnalities">
+    <PageHeader 
+        title="Section title"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        badgeText="Section label"
+    />
+
+    <div class="section-content">
+        <div class="cards-container">
+            <div class="card-row large-left">
+                <HorizontalCard 
+                    title="Lorem ipsum dolor sit amet"
+                    icon="fa-regular fa-lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    image={default_logo}
+                    imageAlt="Feature 1"
+                    imageWidth="100%"
+                    imagePosition="right"
+                />
+                
+                <HorizontalCard
+                    iconCircle={true}
+                    title="Lorem ipsum dolor sit amet"
+                    icon="fa-regular fa-lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                />
+            </div>
+
+            <div class="card-row large-right">
+                <HorizontalCard
+                    title="Lorem ipsum dolor sit amet"
+                    icon="fa-regular fa-lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                />
+
+                <HorizontalCard
+                    title="Lorem ipsum dolor sit amet"
+                    icon="fa-regular fa-lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    image={default_logo}
+                    imageAlt="Feature 1"
+                    imageWidth="100%"
+                    imagePosition="right"
+                />
+            </div>
+        </div>
+
+        <ImageScreen 
+            image={default_logo}
+            imageAlt="Feature 1"
+            contentHeight="600px"
+        />
+
+        <div class="cards-container">
+            <div class="card-row large-right">
+                <HorizontalCard
+                    title="Lorem ipsum dolor sit amet"
+                    icon="fa-regular fa-lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                />
+
+                <HorizontalCard
+                    title="Lorem ipsum dolor sit amet"
+                    icon="fa-regular fa-lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    image={default_logo}
+                    imageAlt="Feature 1"
+                    imageWidth="100%"
+                    imagePosition="right"
+                />
+            </div>
+
+            <div class="card-row large-left">
+                <HorizontalCard 
+                    title="Lorem ipsum dolor sit amet"
+                    icon="fa-regular fa-lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    image={default_logo}
+                    imageAlt="Feature 1"
+                    imageWidth="100%"
+                    imagePosition="right"
+                />
+                
+                <HorizontalCard
+                    iconCircle={true}
+                    title="Lorem ipsum dolor sit amet"
+                    icon="fa-regular fa-lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                />
+            </div>
+
+            <HorizontalCard 
+                title="Lorem ipsum dolor sit amet"
+                icon="fa-regular fa-lightbulb"
+                content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                image={default_logo}
+                imageAlt="Feature 1"
+                imageWidth="90%"
+                imagePosition="right"
+            />
+        </div>
+    </div>
+</section>
+
+<style>
+    section {
+        background-color: var(--background-color);
+        padding-bottom: 50px;
+    }
+
+    .section-content {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    .cards-container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .card-row {
+        display: grid;
+        gap: var(--grid-gap-container);
+    }
+
+    .card-row.large-left {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .card-row.large-right {
+        grid-template-columns: 1fr 2fr;
+    }
+
+    @media (max-width: 1024px) {
+        .card-row.large-left,
+        .card-row.large-right {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

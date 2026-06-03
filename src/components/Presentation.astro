@@ -1,0 +1,82 @@
+---
+import HorizontalCard from './UI/HorizontalCard.astro';
+---
+
+<section>
+    <h2>
+        Minim ullamco cupidatat
+    </h2>
+
+    <div class="card-container">
+        <HorizontalCard 
+            icon="fa-regular fa-lightbulb"
+            title="Voluptate non occaecat"
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            small={false}
+        />
+        <HorizontalCard 
+            icon="fa-regular fa-lightbulb"
+            title="Voluptate non occaecat"
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            small={false}
+        />
+    </div>
+
+    <div class="card-container">
+        <HorizontalCard 
+            icon="fa-regular fa-lightbulb"
+            title="Voluptate non occaecat"
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        />
+        <HorizontalCard 
+            icon="fa-regular fa-lightbulb"
+            title="Voluptate non occaecat"
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        />
+        <HorizontalCard 
+            icon="fa-regular fa-lightbulb"
+            title="Voluptate non occaecat"
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        />
+    </div>
+</section>
+
+<style>
+    section {
+        height: 100%;
+        background-color: var(--background-color);
+        padding-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .card-container {
+        display: grid;
+        gap: var(--grid-gap-container);
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .card-container:last-child {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 1024px) {
+        section {
+            height: auto;
+        }
+
+        .card-container,
+        .card-container:last-child {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

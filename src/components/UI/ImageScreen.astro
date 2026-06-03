@@ -1,0 +1,89 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+    image: ImageMetadata;
+    imageAlt: string;
+    height?: string;
+    width?: string;
+    contentHeight?: string;
+}
+
+const { image, imageAlt, height, width, contentHeight } = Astro.props as Props;
+---
+
+<div class="container">
+    <div class="header">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="image-wrapper" style={`height: ${contentHeight ?? "250px"}`}>
+        <Image src={image} alt={imageAlt} class="image" 
+        style={`height: ${height ?? "80px"}; width: ${width ?? "80px"}`}/>
+    </div>
+</div>
+
+<style>
+    .container {
+        outline: 1px solid var(--border-color);
+        background-color: var(--custom-white);
+        width: 100%;
+        border-radius: 24px;
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+        margin: auto;
+    }
+
+    .container:hover {
+        box-shadow: 0 10px 10px var(--shadow-color);
+    }
+
+    .header {
+        background-color: var(--secondary-color);
+        height: 32px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0 20px;
+    }
+
+    span {
+        height: 8px;
+        width: 8px;
+        border-style: solid;
+        border-width: 2px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    span:nth-child(1) {
+        background-color: #ef3d4f;
+        border-color: #ef3d4f;
+    }
+
+    span:nth-child(2) {
+        background-color: #f8b53b;
+        border-color: #f8b53b;
+    }
+
+    span:nth-child(3) {
+        background-color: #2ed933;
+        border-color: #2ed933;
+    }
+
+    .image-wrapper {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+    .image {
+		padding: 4px;
+		border-radius: 16px;
+		overflow: hidden;
+	}
+</style>

@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+    title: string;
+    subtitle: string;
+    content: string;
+    small?: boolean;
+    image: ImageMetadata;
+    links: {
+        icon: string;
+        url: string;
+    }[];
+}
+
+const { title, subtitle, content, small = true, image, links } = Astro.props as Props;
+---
+
+<div class="container">
+    <div class="image-wrapper">
+        <Image src={image} alt={subtitle} class="card-image"/>
+    </div>
+
+    <div class="content">
+        <h3 style={`font-size: ${small ? '1.25rem' : '1.5rem'};}`}>
+            {title}
+        </h3>
+
+        <h4 style={`font-size: ${small ? '1.125rem' : '1.25rem'};}`}>
+            {subtitle}
+        </h4>
+
+        <p style={`font-size: ${small ? '1rem' : '1.125rem'}`}>{content}</p>
+        
+        <div class="link-container">
+            {links.map(link => (
+                <a href={link.url} target="_blank" class="link">
+                    <i class={`${link.icon} fa-lg`} />
+                </a>
+            ))}
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .container {
+        width: 100%;
+        height: 100%;
+        padding: 40px 48px;
+        border-radius: 24px;
+        transition: all 0.3s ease-in-out;
+        background-color: var(--custom-white);
+        outline: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin: auto;
+    }
+
+    .container:hover {
+        box-shadow: 0 10px 10px var(--shadow-color);
+        outline: 1px solid rgb(from var(--primary-color) r g b / 0.5);
+        transform: translateY(-5px);
+    }
+
+    .image-wrapper {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-image {
+        transition: all 0.3s ease-in-out;
+        transition-delay: 0.15s;
+        height: 150px;
+        width: auto;
+    }
+
+    .content {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        text-align: center;
+    }
+
+    h3 {
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    h4 {
+        color: var(--primary-color);
+        font-family: var(--font-family-secondary);
+        font-weight: bold;
+    }
+
+    .link-container {
+        display: flex;
+        gap: 16px;
+        margin-top: 16px;
+    }
+
+    .link i {
+        transition: all 0.3s ease;
+        color: var(--text-color-secondary);}
+
+    .link:hover i {
+        transform: scale(1.1);
+        color: var(--primary-color);
+    }
+</style>

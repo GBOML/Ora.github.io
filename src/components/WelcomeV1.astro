@@ -1,0 +1,91 @@
+---
+import Badge from "./UI/Badge.astro";
+import Button from "./UI/Button.astro";
+import ImageScreen from "./UI/ImageScreen.astro";
+import default_logo from '../assets/default.png';
+
+
+---
+
+<section id="welcome">
+	<div class="welcome-container">
+		<div class="text-container">
+			<Badge text="New V1.0"/>
+			<h1>
+				Optimisation <em>without compromise</em>
+			</h1>
+
+			<p>Velit nulla proident sunt ex ipsum id laboris quis qui incididunt ea. Aliqua cupidatat pariatur laboris deserunt ullamco enim tempor nulla aute dolor duis.</p>
+
+			<div class="button-container">
+				<Button title="See documentation" icon="fa-solid fa-newspaper" />
+				<Button title="Contact us" icon="fa-solid fa-envelope" basic={false} href="/contact" internal_link={true}/>
+			</div>
+		</div>
+	
+		<ImageScreen 
+			image={default_logo}
+            imageAlt="Feature 1"
+		/>
+	</div>
+</section>
+
+<style>
+	#welcome {
+		background: radial-gradient(circle,rgba(152, 206, 237, 1) 0%, rgba(250, 251, 251, 1) 50%);
+		padding-bottom: 80px;
+		height: 100%;
+	}
+
+	.welcome-container {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 40px;
+	}
+
+	.text-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		justify-content: center;
+		gap: 24px;
+		max-width: 50%;
+		margin: auto;
+	}
+
+	h1 {
+		font-size: 4.5rem;
+		margin: 0;
+		line-height: 1;
+	}
+
+	p {
+		color: var(--text-color-secondary);
+		font-size: 1.2rem;
+	}
+
+	.button-container {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	@media (max-width: 1024px) {
+		.text-container {
+			max-width: 100%;
+		}
+
+		h1 {
+			font-size: 2.5rem;
+		}
+
+		.button-container {
+			flex-direction: column;
+			gap: 12px;
+		}
+	}
+</style>

@@ -1,0 +1,92 @@
+---
+interface Props {
+  title: string;
+  icon?: string;
+  iconPosition?: 'left' | 'right';
+  basic?: boolean;
+  href?: string;
+  internal_link?: boolean;
+  small?: boolean;
+  arrowIcon?: boolean;
+}
+
+const { title, icon, iconPosition = 'left', basic = true, href, internal_link = true, small = false, arrowIcon = false } = Astro.props;
+---
+
+<a 
+    href={href}
+    target={internal_link ? "_self" : "_blank"}
+    class={`${basic ? "basic" : "primary"} ${small ? "small" : "large"} ${arrowIcon ? "arrow-icon" : "button"}`}
+>
+    {icon && iconPosition === 'left' && <i class={icon} />}
+    {title}
+    {icon && iconPosition === 'right' && <i class={icon} />}
+</a>
+
+<style>
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    a.basic {
+        background-color: var(--secondary-color);
+        outline: 1px solid rgba(from var(--text-color-secondary) r g b / 0.1);
+        color: var(--text-color);
+    }
+
+    a.primary {
+        background-color: var(--primary-color);
+        color: var(--custom-white);
+    }
+
+    a.small {
+        font-size: 1rem;
+        padding: 8px 24px;
+    }
+
+    a.large {
+        font-size: 1.2rem;
+        padding: 12px 24px;
+    }
+
+    a.button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px var(--shadow-color);
+    }
+
+    a.arrow-icon:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px var(--shadow-color);
+    }
+
+     a.arrow-icon i {
+        transition: all 0.3s ease;
+    }
+
+    a.arrow-icon:hover i {
+        transform: translateX(4px);
+    }
+
+    a.basic:hover {
+        outline: 1px solid rgb(from var(--primary-color) r g b / 0.5);
+    }
+
+    a:active {
+        transform: scale(0.95);
+    }
+
+    @media(max-width: 1024px) {
+        a {
+            padding: 10px 20px;
+        }
+    }
+</style>
