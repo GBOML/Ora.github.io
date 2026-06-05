@@ -1,19 +1,20 @@
 ---
 const currentPath = Astro.url.pathname;
+import sharedLink from '../assets/shared_link.json';
 ---
 
 <header>
     <h1>
-        <a href="./">Ora</a>
+        <a href={`/${sharedLink.base}`}>Ora</a>
     </h1>
     
 
     <nav>
         <ul>
-            <li><a href="./" class={currentPath === '/' ? 'active' : ''}>Home</a></li>
-            <li><a href="./functionalities" class={currentPath === '/functionalities' ? 'active' : ''}>Functionalities</a></li>
-            <li><a href="./team" class={currentPath === '/team' ? 'active' : ''}>Team</a></li>
-            <li><a href="./contact" class={currentPath === '/contact' ? 'active' : ''}>Contact</a></li>
+            <li><a href={`/${sharedLink.base}`} class={currentPath === '/' ? 'active' : ''}>Home</a></li>
+            <li><a href={`/${sharedLink.base}/functionalities`} class={currentPath === '/functionalities' ? 'active' : ''}>Functionalities</a></li>
+            <li><a href={`/${sharedLink.base}/team`} class={currentPath === '/team' ? 'active' : ''}>Team</a></li>
+            <li><a href={`/${sharedLink.base}/contact`} class={currentPath === '/contact' ? 'active' : ''}>Contact</a></li>
         </ul>
     </nav>
 </header>

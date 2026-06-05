@@ -1,11 +1,15 @@
+---
+import sharedLink from '../assets/shared_link.json';
+---
+
 <footer>
     <span>&copy; 2026 Ora. All rights reserved.</span>
 
     <nav>
-        <a href="./">Home</a>
-        <a href="./functionalities">Functionalities</a>
-        <a href="./team">Team</a>
-        <a href="./contact">Contact</a>
+        <a href={`/${sharedLink.base}`}>Home</a>
+        <a href={`/${sharedLink.base}/functionalities`}>Functionalities</a>
+        <a href={`/${sharedLink.base}/team`}>Team</a>
+        <a href={`/${sharedLink.base}/contact`}>Contact</a>
     </nav>
 </footer>
 
