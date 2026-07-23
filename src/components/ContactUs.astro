@@ -1,5 +1,6 @@
 ---
 import Button from "./UI/Button.astro";
+import sharedLink from '../assets/shared_link.json';
 ---
 
 <section>
@@ -10,9 +11,8 @@ import Button from "./UI/Button.astro";
 
         <div class="button-container">
             <Button title="Button 1" small={true}/>
-            <Button title="Contact us" basic={false} href="/contact" small={true}/>
+            <Button title="Contact us" basic={false} href={`/${sharedLink.base}/contact`} small={true}/>
         </div>
-            
     </div>
 </section>
 
@@ -35,6 +35,12 @@ import Button from "./UI/Button.astro";
         width: 90%;
         margin: auto
     }
+
+    html.dark .contact-us-container {
+        outline: 1px solid rgb(from var(--primary-color-dark) r g b / 0.2);
+        background-color: rgb(from var(--primary-color-dark) r g b / 0.05);
+    }
+
     
     h2 {
         font-size: 1.8rem;
@@ -47,6 +53,11 @@ import Button from "./UI/Button.astro";
         max-width: 50%;
         text-align: center;
 	}
+
+    html.dark p {
+		color: var(--text-color-secondary-dark);
+	}
+
 
     .button-container {
         display: flex;

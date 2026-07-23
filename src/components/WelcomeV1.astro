@@ -3,8 +3,7 @@ import Badge from "./UI/Badge.astro";
 import Button from "./UI/Button.astro";
 import ImageScreen from "./UI/ImageScreen.astro";
 import default_logo from '../assets/default.png';
-
-
+import sharedLink from '../assets/shared_link.json';
 ---
 
 <section id="welcome">
@@ -19,7 +18,7 @@ import default_logo from '../assets/default.png';
 
 			<div class="button-container">
 				<Button title="See documentation" icon="fa-solid fa-newspaper" />
-				<Button title="Contact us" icon="fa-solid fa-envelope" basic={false} href="/contact" internal_link={true}/>
+				<Button title="Contact us" icon="fa-solid fa-envelope" basic={false} href={`/${sharedLink.base}/contact`} internal_link={true}/>
 			</div>
 		</div>
 	
@@ -66,6 +65,10 @@ import default_logo from '../assets/default.png';
 	p {
 		color: var(--text-color-secondary);
 		font-size: 1.2rem;
+	}
+
+	html.dark p {
+		color: var(--text-color-secondary-dark);
 	}
 
 	.button-container {

@@ -1,35 +1,36 @@
 ---
 import Button from "./UI/Button.astro";
+import t from "../i18n/contact-page.ts";
 ---
 
 <form>
     <div class="form-grid">
         <div class="form-group">
-            <label for="name">Full name</label>
-            <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+            <label for="name">{t.form.name_input.label}</label>
+            <input type="text" id="name" name="name" placeholder={t.form.name_input.placeholder} required />
         </div>
         <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="jane@company.com" required />
+            <label for="email">{t.form.email_input.label}</label>
+            <input type="email" id="email" name="email" placeholder={t.form.email_input.placeholder} required />
         </div>
 
         <div class="form-group">
-            <label for="organisation">Organization</label>
-            <input type="text" id="organisation" name="organisation" placeholder="Institution or Company Name" />
+            <label for="organisation">{t.form.organization_input.label}</label>
+            <input type="text" id="organisation" name="organisation" placeholder={t.form.organization_input.placeholder} />
         </div>
         <div class="form-group">
-            <label for="object">Object</label>
-            <input type="text" id="object" name="object" placeholder="Brief description of your project or inquiry" />
+            <label for="subject">{t.form.subject_input.label}</label>
+            <input type="text" id="subject" name="subject" placeholder={t.form.subject_input.placeholder} />
         </div>
     </div>
 
     <div class="form-group full-width">
-        <label for="message">Project brief</label>
-        <textarea id="message" name="message" placeholder="Please describe your technical requirements or current challenges..." required></textarea>
+        <label for="message">{t.form.message_input.label}</label>
+        <textarea id="message" name="message" placeholder={t.form.message_input.placeholder} required></textarea>
     </div>
 
     <div class="form-footer">
-        <Button arrowIcon={true} title="Send" basic={false} icon="fa-solid fa-arrow-right" iconPosition="right"/>
+        <Button arrowIcon={true} title={t.form.button.text} basic={false} icon="fa-solid fa-arrow-right" iconPosition="right"/>
     </div>
 </form>
 
@@ -41,6 +42,10 @@ import Button from "./UI/Button.astro";
         padding: 40px 50px 20px 50px;
         width: 100%;
         margin: 0 auto;
+    }
+
+    html.dark form {
+        background-color: var(--custom-black);
     }
 
     .form-grid {
@@ -66,7 +71,11 @@ import Button from "./UI/Button.astro";
         font-family: inherit;
         font-size: 1.2rem;
         color: var(--text-color);
-        transition: all 0.3s ease;
+        transition: color 0.3s ease;
+    }
+
+    html.dark input {
+        color: var(--text-color-dark);
     }
 
     textarea {
@@ -77,18 +86,35 @@ import Button from "./UI/Button.astro";
         font-family: inherit;
         background-color: var(--custom-white);
         color: var(--text-color);
-        transition: all 0.3s ease;
+        transition: color 0.3s ease;
     }
+
+    html.dark textarea {
+        background-color: var(--custom-black);
+        border: 1px solid var(--border-color-dark);
+        color: var(--text-color-dark);
+    }
+
 
     input:focus {
         outline: none;
         border-bottom: 1px solid var(--primary-color);
     }
 
+    html.dark input:focus {
+        border-bottom: 1px solid var(--primary-color-dark);
+    }
+
+
     textarea:focus {
         outline: none;
         border: 1px solid var(--primary-color);
     }
+
+    html.dark textarea:focus {
+        border: 1px solid var(--primary-color-dark);
+    }
+
     
     textarea {
         min-height: 200px;
@@ -102,6 +128,20 @@ import Button from "./UI/Button.astro";
         margin-top: 20px;
         padding-top: 24px;
     }
+    
+    input::placeholder,
+    textarea::placeholder {
+        color: var(--text-color);
+        opacity: 0.6;
+        /* transition: color 0.3s ease; */
+    }
+    
+    html.dark input::placeholder,
+    html.dark textarea::placeholder {
+        color: var(--text-color-dark);
+        opacity: 0.6;
+    }
+
 
     @media(max-width: 768px) {
         form {

@@ -34,7 +34,11 @@ const { title, icon, iconPosition = 'left', basic = true, href, internal_link = 
         border: none;
         border-radius: 100px;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    html.dark a {
+        background-color: var(--primary-color-dark);
     }
 
     a.basic {
@@ -43,9 +47,20 @@ const { title, icon, iconPosition = 'left', basic = true, href, internal_link = 
         color: var(--text-color);
     }
 
+    html.dark a.basic {
+        background-color: var(--secondary-color-dark);
+        outline: 1px solid rgba(from var(--text-color-secondary-dark) r g b / 0.1);
+        color: var(--text-color-dark);
+    }
+
     a.primary {
         background-color: var(--primary-color);
         color: var(--custom-white);
+    }
+
+    html.dark a.primary {
+        background-color: var(--primary-color-dark);
+        color: var(--custom-dark);
     }
 
     a.small {
@@ -57,19 +72,25 @@ const { title, icon, iconPosition = 'left', basic = true, href, internal_link = 
         font-size: 1.2rem;
         padding: 12px 24px;
     }
+    
+    a.arrow-icon,
+    a.button {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
 
+    a.arrow-icon:hover, 
     a.button:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 6px var(--shadow-color);
     }
-
-    a.arrow-icon:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 6px var(--shadow-color);
+    
+    html.dark a.button:hover,
+    a.button:hover {
+        box-shadow: 0 4px 6px var(--shadow-color-dark);
     }
 
      a.arrow-icon i {
-        transition: all 0.3s ease;
+        transition: transform 0.3s ease;
     }
 
     a.arrow-icon:hover i {
@@ -78,6 +99,10 @@ const { title, icon, iconPosition = 'left', basic = true, href, internal_link = 
 
     a.basic:hover {
         outline: 1px solid rgb(from var(--primary-color) r g b / 0.5);
+    }
+
+    html.dark a.basic:hover {
+        outline: 1px solid rgb(from var(--primary-color-dark) r g b / 0.5);
     }
 
     a:active {

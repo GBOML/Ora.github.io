@@ -1,111 +1,107 @@
 ---
 import PageHeader from '../components/PageHeader.astro';
-import HorizontalCard from '../components/UI/HorizontalCard.astro';
-import ImageScreen from '../components/UI/ImageScreen.astro';
-import default_logo from '../assets/default.png';
+import t from "../i18n/functionalities-page.ts";
+import functionalities_model_light from "../assets/screenshots/light/functionalities-model.png";
+import functionalities_model_dark from "../assets/screenshots/dark/functionalities-model.png";
+import functionalities_space_light from "../assets/screenshots/light/functionalities-space.png";
+import functionalities_space_dark from "../assets/screenshots/dark/functionalities-space.png";
+import functionalities_report_light from "../assets/screenshots/light/functionalities-report.png";
+import functionalities_report_dark from "../assets/screenshots/dark/functionalities-report.png";
+import ImageLightDark from './UI/ImageLightDark.astro';
 ---
 
 <section id="#functionnalities">
     <PageHeader 
-        title="Section title"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        badgeText="Section label"
+        title={t.header.title}
+        description={t.header.description}
     />
 
-    <div class="section-content">
-        <div class="cards-container">
-            <div class="card-row large-left">
-                <HorizontalCard 
-                    title="Lorem ipsum dolor sit amet"
-                    icon="fa-regular fa-lightbulb"
-                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                    image={default_logo}
-                    imageAlt="Feature 1"
-                    imageWidth="100%"
-                    imagePosition="right"
-                />
-                
-                <HorizontalCard
-                    iconCircle={true}
-                    title="Lorem ipsum dolor sit amet"
-                    icon="fa-regular fa-lightbulb"
-                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                />
-            </div>
+   
+    <!-- Model Section -->
+    <div class="functionnalities-model">
+        <div>
+            <h2 class="mb-5">
+                <i class="fa-solid fa-code-merge"></i>
+                {t.model_section.title}
+            </h2>
 
-            <div class="card-row large-right">
-                <HorizontalCard
-                    title="Lorem ipsum dolor sit amet"
-                    icon="fa-regular fa-lightbulb"
-                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                />
-
-                <HorizontalCard
-                    title="Lorem ipsum dolor sit amet"
-                    icon="fa-regular fa-lightbulb"
-                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                    image={default_logo}
-                    imageAlt="Feature 1"
-                    imageWidth="100%"
-                    imagePosition="right"
-                />
-            </div>
+            <p class="mb-3">{t.model_section.description}</p>
+            <ul>
+                {t.model_section.keys.map((key, i) => {
+                    return (
+                        <li class="mb-2">
+                            <span>
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+                            <em class="mr-2">{key.title}</em>{key.description}
+                        </li>
+                    )
+                    
+                })}
+            </ul>
         </div>
 
-        <ImageScreen 
-            image={default_logo}
-            imageAlt="Feature 1"
-            contentHeight="600px"
-        />
+        <span class="flex justify-center">
+             <ImageLightDark image={functionalities_model_light} imageDark={functionalities_model_dark} height={400} imageAlt="data node"/>
+        </span>
+    </div>
 
-        <div class="cards-container">
-            <div class="card-row large-right">
-                <HorizontalCard
-                    title="Lorem ipsum dolor sit amet"
-                    icon="fa-regular fa-lightbulb"
-                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                />
+    <!-- Space section -->
+    <div class="functionnalities-model">
+        <span class="flex justify-center">
+            <ImageLightDark image={functionalities_space_light} imageDark={functionalities_space_dark} height={400} imageAlt="space"/>
+        </span>
 
-                <HorizontalCard
-                    title="Lorem ipsum dolor sit amet"
-                    icon="fa-regular fa-lightbulb"
-                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                    image={default_logo}
-                    imageAlt="Feature 1"
-                    imageWidth="100%"
-                    imagePosition="right"
-                />
-            </div>
+        <div>
+            <h2 class="mb-5">
+                <i class="fa-solid fa-code-merge"></i>
+                {t.space_section.title}
+            </h2>
 
-            <div class="card-row large-left">
-                <HorizontalCard 
-                    title="Lorem ipsum dolor sit amet"
-                    icon="fa-regular fa-lightbulb"
-                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                    image={default_logo}
-                    imageAlt="Feature 1"
-                    imageWidth="100%"
-                    imagePosition="right"
-                />
-                
-                <HorizontalCard
-                    iconCircle={true}
-                    title="Lorem ipsum dolor sit amet"
-                    icon="fa-regular fa-lightbulb"
-                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                />
-            </div>
-
-            <HorizontalCard 
-                title="Lorem ipsum dolor sit amet"
-                icon="fa-regular fa-lightbulb"
-                content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                image={default_logo}
-                imageAlt="Feature 1"
-                imageWidth="90%"
-                imagePosition="right"
-            />
+            <p class="mb-3">{t.space_section.description}</p>
+            <ul>
+                {t.space_section.keys.map((key, i) => {
+                    return (
+                        <li class="mb-2">
+                            <span>
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+                            <em class="mr-2">{key.title}</em>{key.description}
+                        </li>
+                    )
+                    
+                })}
+            </ul>
         </div>
+    </div>
+
+     <!-- Report section -->
+    <div class="functionnalities-model">
+        <div>
+            <h2 class="mb-5">
+                <i class="fa-solid fa-code-merge"></i>
+                {t.report_section.title}
+            </h2>
+
+            <p class="mb-3">{t.report_section.description}</p>
+            <ul>
+                {t.report_section.keys.map((key, i) => {
+                    return (
+                        <li class="mb-2">
+                            <span>
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+                            <em class="mr-2">{key.title}</em>{key.description}
+                        </li>
+                    )
+                    
+                })}
+            </ul>
+        </div>
+
+        <span class="flex justify-center">
+            <ImageLightDark image={functionalities_report_light} imageDark={functionalities_report_dark} height={400} imageAlt="report"/>
+        </span>
     </div>
 </section>
 
@@ -113,6 +109,36 @@ import default_logo from '../assets/default.png';
     section {
         background-color: var(--background-color);
         padding-bottom: 50px;
+    }
+
+    html.dark section {
+        background-color: var(--background-color-dark);
+    }
+
+    .functionnalities-model {
+        display: grid;
+        grid-template-columns: 1.5fr 2.5fr;
+        grid-template-rows: repeat(2, auto);
+        gap: 50px;
+        align-items: center;
+    }
+
+    .functionnalities-model:nth-child(even) {
+        grid-template-columns: 2.5fr 1.5fr;
+    }
+
+    .functionnalities-model h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--primary-color);        
+    }
+
+    html.dark .functionnalities-model h2 {
+        color: var(--primary-color-dark);
+    }
+
+    .functionnalities-model .image {
+        object-fit: cover;
     }
 
     .section-content {
@@ -138,6 +164,19 @@ import default_logo from '../assets/default.png';
 
     .card-row.large-right {
         grid-template-columns: 1fr 2fr;
+    }
+
+    li > span {
+        color: var(--primary-color);
+    }
+
+    h2 > i,
+    li > span {
+        margin-right: 10px;
+    }
+
+    html.dark li > span {
+        color: var(--primary-color-dark);
     }
 
     @media (max-width: 1024px) {

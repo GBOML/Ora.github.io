@@ -1,16 +1,20 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
+import default_logo from '../../assets/default.png';
 
 interface Props {
-    image: ImageMetadata;
+    image?: ImageMetadata;
+    imageDark?: ImageMetadata;
     imageAlt: string;
     height?: string;
     width?: string;
     contentHeight?: string;
 }
 
-const { image, imageAlt, height, width, contentHeight } = Astro.props as Props;
+const { image, imageDark, imageAlt, height, width, contentHeight } = Astro.props as Props;
+
+
 ---
 
 <div class="container">
@@ -21,8 +25,13 @@ const { image, imageAlt, height, width, contentHeight } = Astro.props as Props;
     </div>
 
     <div class="image-wrapper" style={`height: ${contentHeight ?? "250px"}`}>
-        <Image src={image} alt={imageAlt} class="image" 
-        style={`height: ${height ?? "80px"}; width: ${width ?? "80px"}`}/>
+        <Image src={image ?? default_logo} alt={imageAlt} class="image" 
+            style={`height: ${image ? '100%':  "80px"}; width: ${image ? '':  "80px"}; ${image ? 'object-fit: cover;' : ''}'`}
+        />
+
+        <Image src={imageDark ?? default_logo} alt={imageAlt} class="image-dark" 
+            style={`height: ${imageDark ? '100%':  "80px"}; width: ${imageDark ? '':  "80px"}; ${imageDark ? 'object-fit: cover;' : ''}'`}
+        />
     </div>
 </div>
 
@@ -32,13 +41,23 @@ const { image, imageAlt, height, width, contentHeight } = Astro.props as Props;
         background-color: var(--custom-white);
         width: 100%;
         border-radius: 24px;
-        transition: all 0.3s ease-in-out;
+        transition: outline 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
         overflow: hidden;
         margin: auto;
     }
 
+    html.dark .container {
+        outline: 1px solid var(--border-color-dark);
+        background-color: var(--custom-black);
+    }
+
     .container:hover {
         box-shadow: 0 10px 10px var(--shadow-color);
+        transform: scale(1.01)
+    }
+
+    html.dark .container:hover {
+        box-shadow: 0 10px 10px var(--shadow-color-dark);
     }
 
     .header {
@@ -48,6 +67,11 @@ const { image, imageAlt, height, width, contentHeight } = Astro.props as Props;
         align-items: center;
         gap: 4px;
         padding: 0 20px;
+        z-index:10;
+    }
+
+    html.dark .header {
+        background-color: var(--secondary-color-dark);
     }
 
     span {
@@ -86,4 +110,19 @@ const { image, imageAlt, height, width, contentHeight } = Astro.props as Props;
 		border-radius: 16px;
 		overflow: hidden;
 	}
+
+    .image-dark {
+        padding: 4px;
+        border-radius: 16px;
+        overflow: hidden;
+        display: none;
+    }
+
+    html.dark .image {
+        display: none;
+    }
+
+    html.dark .image-dark {
+        display: block;
+    }
 </style>

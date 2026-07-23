@@ -1,6 +1,6 @@
 ---
-import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import ImageLightDark from './ImageLightDark.astro';
 
 interface Props {
     title: string;
@@ -9,18 +9,21 @@ interface Props {
     iconCircle?: boolean;
     small?: boolean;
     image?: ImageMetadata;
+    imageDark?: ImageMetadata;
     imageAlt?: string;
     imageWidth?: string;
     imagePosition?: 'left' | 'right';
 }
 
-const { title, content, icon, iconCircle = false, small = true, image, imageAlt = "", imageWidth = "35%", imagePosition = 'left' } = Astro.props as Props;
+const { title, content, icon, iconCircle = false, small = true, image, imageDark, imageAlt = "", imageWidth = "35%", imagePosition = 'left' } = Astro.props as Props;
 ---
 
 <div class="container">
-    {image && imagePosition === 'left' && 
+    {image && imageDark && imagePosition === 'left' && 
         <div class="image-wrapper">
-            <Image src={image} alt={imageAlt} style={`width:${imageWidth};`} class="card-image"/>
+            <ImageLightDark image={image} imageDark={imageDark} height={400} imageAlt={imageAlt} 
+                customStyle={`height: ${image ? '100%':  "80px"}; width: ${image ? '':  "80px"}; ${image ? 'object-fit: cover;' : ''}'`}
+            />
         </div>
     }
 
@@ -31,13 +34,16 @@ const { title, content, icon, iconCircle = false, small = true, image, imageAlt 
                 {title}
             </h3>
 
-            <p style={`font-size: ${small ? '1rem' : '1.125rem'}`}>{content}</p>
+            <p style={`font-size: ${small ? '1em' : '1.125rem'}`}>{content}</p>
         </div>
     </div>
 
-    {image && imagePosition === 'right' && 
+    {image && imageDark && imagePosition === 'right' && 
         <div class="image-wrapper">
-            <Image src={image} alt={imageAlt} style={`width:${imageWidth};`} class="card-image"/>
+            <ImageLightDark image={image} imageDark={imageDark} height={400} imageAlt={imageAlt} 
+                customStyle={`height: ${image ? '100%':  "80px"}; width: ${image ? '':  "80px"}; ${image ? 'object-fit: cover;' : ''}'`}
+            />
+        
         </div>
     }
 </div>
@@ -48,7 +54,7 @@ const { title, content, icon, iconCircle = false, small = true, image, imageAlt 
         height: 100%;
         padding: 40px 48px;
         border-radius: 24px;
-        transition: all 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, outline 0.3s ease-in-out;
         background-color: var(--custom-white);
         outline: 1px solid var(--border-color);
         display: flex;
@@ -56,10 +62,20 @@ const { title, content, icon, iconCircle = false, small = true, image, imageAlt 
         margin: auto;
     }
 
+    html.dark .container {
+        background-color: var(--custom-black);
+        outline: 1px solid var(--border-color-dark);
+    }
+
     .container:hover {
         box-shadow: 0 10px 10px var(--shadow-color);
         outline: 1px solid rgb(from var(--primary-color) r g b / 0.5);
         transform: translateY(-5px);
+    }
+
+    html.dark .container:hover {
+        box-shadow: 0 10px 10px var(--shadow-color-dark);
+        outline: 1px solid rgb(from var(--primary-color-dark) r g b / 0.5);
     }
 
     .container:hover i {
@@ -78,12 +94,16 @@ const { title, content, icon, iconCircle = false, small = true, image, imageAlt 
     }
 
     i {
-        transition: all 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
         color: var(--primary-color);
     }
 
+    html.dark i {
+        color: var(--primary-color-dark);
+    }
+
     .card-image {
-        transition: all 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
         transition-delay: 0.15s;
     }
 
@@ -94,6 +114,11 @@ const { title, content, icon, iconCircle = false, small = true, image, imageAlt 
         width: auto; 
         outline: 1px solid rgb(from var(--primary-color) r g b / 0.5);
         border-radius: 100%;
+    }
+
+    html.dark .icon-circle {
+        background-color: rgb(from var(--primary-color-dark) r g b / 0.1);
+        outline: 1px solid rgb(from var(--primary-color-dark) r g b / 0.5);
     }
 
     .content {

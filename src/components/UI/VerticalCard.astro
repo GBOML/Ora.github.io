@@ -50,7 +50,7 @@ const { title, subtitle, content, small = true, image, links } = Astro.props as 
         height: 100%;
         padding: 40px 48px;
         border-radius: 24px;
-        transition: all 0.3s ease-in-out;
+        transition: outline 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
         background-color: var(--custom-white);
         outline: 1px solid var(--border-color);
         display: flex;
@@ -59,10 +59,20 @@ const { title, subtitle, content, small = true, image, links } = Astro.props as 
         margin: auto;
     }
 
+    html.dark .container {
+        background-color: var(--custom-black);
+        outline: 1px solid var(--border-color-dark);
+    }
+
     .container:hover {
         box-shadow: 0 10px 10px var(--shadow-color);
         outline: 1px solid rgb(from var(--primary-color) r g b / 0.5);
         transform: translateY(-5px);
+    }
+
+    html.dark .container:hover {
+        box-shadow: 0 10px 10px var(--shadow-color-dark);
+        outline: 1px solid rgb(from var(--primary-color-dark) r g b / 0.5);
     }
 
     .image-wrapper {
@@ -73,7 +83,7 @@ const { title, subtitle, content, small = true, image, links } = Astro.props as 
     }
 
     .card-image {
-        transition: all 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
         transition-delay: 0.15s;
         height: 150px;
         width: auto;
@@ -99,6 +109,10 @@ const { title, subtitle, content, small = true, image, links } = Astro.props as 
         font-weight: bold;
     }
 
+    html.dark h4 {
+        color: var(--primary-color-dark);
+    }
+
     .link-container {
         display: flex;
         gap: 16px;
@@ -106,11 +120,20 @@ const { title, subtitle, content, small = true, image, links } = Astro.props as 
     }
 
     .link i {
-        transition: all 0.3s ease;
-        color: var(--text-color-secondary);}
+        transition: transform 0.3s ease;
+        color: var(--text-color-secondary);
+    }
+
+    html.dark .link i {
+        color: var(--text-color-secondary-dark);
+    }
 
     .link:hover i {
         transform: scale(1.1);
         color: var(--primary-color);
+    }
+
+    html.dark .link:hover i {
+        color: var(--primary-color-dark);
     }
 </style>

@@ -1,0 +1,31 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+    image: ImageMetadata;
+    imageDark: ImageMetadata;
+    customClass?: string;
+    customStyle?: string;
+    height?: number;
+    imageAlt: string;
+}
+let { image, imageDark, customClass, customStyle, height, imageAlt} = Astro.props as Props;
+---
+
+<Image src={image} alt={imageAlt} class={`image ${customClass || ''}`} height={`${height ?? 400}`} style={customStyle} />
+<Image src={imageDark} alt={imageAlt} class={`image-dark ${customClass || ''}`} height={`${height ?? 400}`} style={customStyle} />
+
+<style>
+    .image-dark {
+        display: none;
+    }
+
+    html.dark .image {
+        display: none;
+    }
+
+    html.dark .image-dark {
+        display: block;
+    }
+</style>

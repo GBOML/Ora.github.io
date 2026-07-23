@@ -42,10 +42,13 @@ const { title, description, badgeText } = Astro.props as Props;
         max-width: 50%;
 	}
 
+    html.dark p {
+        color: var(--text-color-secondary-dark);
+    }
+
     @media (max-width: 1024px) {
         .header {
-        margin-top: 20px;
-
+            margin-top: 20px;
         }
     }
 </style>

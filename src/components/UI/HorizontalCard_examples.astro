@@ -1,0 +1,99 @@
+---
+import HorizontalCard from "./HorizontalCard.astro";
+import ImageScreen from "./ImageScreen.astro";
+import default_logo from "../../assets/default.png";
+---
+
+<div class="section-content">
+        <div class="cards-container">
+            <div class="card-row large-left">
+                <HorizontalCard 
+                    title="Lorem ipsum dolor sit amet"
+                    icon="lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    imageAlt="Feature 1"
+                    imageWidth="100%"
+                    imagePosition="right"
+                />
+                
+                <HorizontalCard
+                    iconCircle={true}
+                    title="Lorem ipsum dolor sit amet"
+                    icon="lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                />
+            </div>
+
+            <div class="card-row large-right">
+                <HorizontalCard
+                    title="Lorem ipsum dolor sit amet"
+                    icon="lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                />
+
+                <HorizontalCard
+                    title="Lorem ipsum dolor sit amet"
+                    icon="lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    imageAlt="Feature 1"
+                    imageWidth="100%"
+                    imagePosition="right"
+                />
+            </div>
+        </div>
+
+        <ImageScreen
+            image={default_logo}
+            imageAlt="Feature 1"
+            contentHeight="600px"
+        />
+
+        <div class="cards-container">
+            <div class="card-row large-right">
+                <HorizontalCard
+                    title="Lorem ipsum dolor sit amet"
+                    icon="lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                />
+
+                <HorizontalCard
+                    title="Lorem ipsum dolor sit amet"
+                    icon="lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    image={default_logo}
+                    imageAlt="Feature 1"
+                    imageWidth="100%"
+                    imagePosition="right"
+                />
+            </div>
+
+            <div class="card-row large-left">
+                <HorizontalCard 
+                    title="Lorem ipsum dolor sit amet"
+                    icon="lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    image={default_logo}
+                    imageAlt="Feature 1"
+                    imageWidth="100%"
+                    imagePosition="right"
+                />
+                
+                <HorizontalCard
+                    iconCircle={true}
+                    title="Lorem ipsum dolor sit amet"
+                    icon="lightbulb"
+                    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                />
+            </div>
+
+            <HorizontalCard 
+                title="Lorem ipsum dolor sit amet"
+                icon="lightbulb"
+                content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                image={default_logo}
+                imageAlt="Feature 1"
+                imageWidth="90%"
+                imagePosition="right"
+            />
+        </div>
+    </div>

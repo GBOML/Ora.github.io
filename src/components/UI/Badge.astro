@@ -25,6 +25,12 @@ const { text } = Astro.props;
         font-family: var(--font-family-secondary);
     }
 
+    html.dark .badge-container {
+        background-color: var(--secondary-color-dark);
+        color: var(--primary-color-dark);
+        outline: 1px solid var(--border-color-dark);
+    }
+
     .circle {
         height: 8px;
         width: 8px;
@@ -34,5 +40,10 @@ const { text } = Astro.props;
         display: inline-block;
         border-color: var(--primary-color);
         background-color: var(--primary-color);
+    }
+
+    html.dark .circle {
+        border-color: var(--primary-color-dark);
+        background-color: var(--primary-color-dark);
     }
 </style>

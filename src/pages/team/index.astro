@@ -2,16 +2,15 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Team from '../../components/Team.astro';
-
-
+import t from "../../i18n/team-page.ts";
 ---
 
 <Layout>
     <section id="#team">
         <PageHeader 
-            title="Our team"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            badgeText="Meet the team"
+            title={t.title}
+            description={t.description}
+            badgeText={t.page_badge}
         />
 
         <Team />

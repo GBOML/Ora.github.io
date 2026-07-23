@@ -24,6 +24,10 @@ import sharedLink from '../assets/shared_link.json';
         color: var(--text-color-secondary);
     }
 
+    html.dark footer {
+        color: var(--text-color-secondary-dark);
+    }
+
     nav {
         display: flex;
         gap: 20px;
@@ -33,5 +37,9 @@ import sharedLink from '../assets/shared_link.json';
         color: var(--primary-color);
         text-decoration: underline;
         text-underline-offset: 2px;
+    }
+
+    html.dark a:hover {
+        color: var(--primary-color-dark);
     }
 </style>

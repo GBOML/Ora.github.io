@@ -17,6 +17,18 @@ import "../style/global.css";
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Ora</title>
+		
+		<script is:inline>
+			const theme = localStorage.getItem("theme");
+
+			if (
+				theme === "dark" ||
+				(!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+				) {
+				document.documentElement.classList.add("dark");
+			}
+		</script>
+
 	</head>
 	<body>
 		<Header />
@@ -30,12 +42,19 @@ import "../style/global.css";
 <style>
 	html,
 	body {
-    	  font-size: var(--font-size);
+    	font-size: var(--font-size);
 		margin: auto;
 		height: 100%;
 		color: var(--text-color);
 		background-color: var(--background-color);
 		scroll-behavior: smooth;
+	}
+
+	html.dark,
+	html.dark body {
+		color: var(--text-color-dark);
+		background-color: var(--custom-black);
+
 	}
 
 	@media (max-width: 1024px) {
