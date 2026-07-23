@@ -10,11 +10,10 @@ interface Props {
     height?: string;
     width?: string;
     contentHeight?: string;
+    mobileContentHeight?: string;
 }
 
-const { image, imageDark, imageAlt, height, width, contentHeight } = Astro.props as Props;
-
-
+const { image, imageDark, imageAlt, height, width, contentHeight, mobileContentHeight } = Astro.props as Props;
 ---
 
 <div class="container">
@@ -24,7 +23,12 @@ const { image, imageDark, imageAlt, height, width, contentHeight } = Astro.props
         <span></span>
     </div>
 
-    <div class="image-wrapper" style={`height: ${contentHeight ?? "250px"}`}>
+    <div class="image-wrapper" 
+        style={`
+            --desktop-height: ${contentHeight ?? "250px"}; 
+            --mobile-height: ${mobileContentHeight ?? contentHeight ?? "250px"};`
+        }
+    >
         <Image src={image ?? default_logo} alt={imageAlt} class="image" 
             style={`height: ${image ? '100%':  "80px"}; width: ${image ? '':  "80px"}; ${image ? 'object-fit: cover;' : ''}'`}
         />
@@ -100,6 +104,7 @@ const { image, imageDark, imageAlt, height, width, contentHeight } = Astro.props
 
     .image-wrapper {
 		width: 100%;
+        height: var(--desktop-height);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -124,5 +129,11 @@ const { image, imageDark, imageAlt, height, width, contentHeight } = Astro.props
 
     html.dark .image-dark {
         display: block;
+    }
+
+    @media (max-width: 1024px) {
+        .image-wrapper {
+            height: var(--mobile-height);
+        }
     }
 </style>

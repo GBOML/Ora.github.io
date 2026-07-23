@@ -42,4 +42,18 @@ import sharedLink from '../assets/shared_link.json';
     html.dark a:hover {
         color: var(--primary-color-dark);
     }
+
+    @media (max-width: 1024px) {
+        footer {
+            flex-direction: column;
+            gap: 20px;
+            padding: 40px 20px;
+        }
+        
+        nav {
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+        }
+    }
 </style>

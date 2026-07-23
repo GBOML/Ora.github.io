@@ -10,7 +10,6 @@ import sharedLink from '../assets/shared_link.json';
         <p>Voluptate amet minim Lorem qui est ipsum consectetur est pariatur. Et ullamco sint cupidatat consectetur officia nostrud.</p>
 
         <div class="button-container">
-            <Button title="Button 1" small={true}/>
             <Button title="Contact us" basic={false} href={`/${sharedLink.base}/contact`} small={true}/>
         </div>
     </div>
@@ -62,5 +61,21 @@ import sharedLink from '../assets/shared_link.json';
     .button-container {
         display: flex;
         gap: 20px;
+    }
+
+    @media (max-width: 1024px) {
+        section {
+            padding-bottom: 50px; 
+        }
+
+
+        .contact-us-container {
+            width: 100%;
+            padding: 20px;
+        }
+
+        p {
+            max-width: 100%;
+        }
     }
 </style>

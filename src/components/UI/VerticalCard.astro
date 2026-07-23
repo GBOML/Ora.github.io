@@ -136,4 +136,10 @@ const { title, subtitle, content, small = true, image, links } = Astro.props as 
     html.dark .link:hover i {
         color: var(--primary-color-dark);
     }
+
+    @media (max-width: 1024px) {
+        .container {
+            padding: 20px 24px;
+        }
+    }
 </style>

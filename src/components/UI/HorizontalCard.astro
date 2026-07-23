@@ -20,14 +20,14 @@ const { title, content, icon, iconCircle = false, small = true, image, imageDark
 
 <div class="container">
     {image && imageDark && imagePosition === 'left' && 
-        <div class="image-wrapper">
+        <div class="image-wrapper image-left">
             <ImageLightDark image={image} imageDark={imageDark} height={400} imageAlt={imageAlt} 
                 customStyle={`height: ${image ? '100%':  "80px"}; width: ${image ? '':  "80px"}; ${image ? 'object-fit: cover;' : ''}'`}
             />
         </div>
     }
 
-    <div>
+    <div class="content-wrapper">
         {icon && <i class={`${icon} ${iconCircle ? 'icon-circle fa-xl' : 'fa-2xl'}`} />}
         <div class="content">
             <h3 style={`font-size: ${small ? '1.25rem' : '1.5rem'};}`}>
@@ -39,7 +39,7 @@ const { title, content, icon, iconCircle = false, small = true, image, imageDark
     </div>
 
     {image && imageDark && imagePosition === 'right' && 
-        <div class="image-wrapper">
+        <div class="image-wrapper image-right">
             <ImageLightDark image={image} imageDark={imageDark} height={400} imageAlt={imageAlt} 
                 customStyle={`height: ${image ? '100%':  "80px"}; width: ${image ? '':  "80px"}; ${image ? 'object-fit: cover;' : ''}'`}
             />
@@ -131,5 +131,22 @@ const { title, content, icon, iconCircle = false, small = true, image, imageDark
     h3 {
         font-weight: bold;
         margin-bottom: 8px;
+    }
+
+    @media (max-width: 1024px) {
+        .container {
+            flex-direction: column;
+            gap: 24px;
+            padding: 20px 24px;
+        }
+
+        .content-wrapper {
+            order: 1;
+        }
+
+        .image-wrapper {
+            order: 2;
+            width: 100%;
+        }
     }
 </style>
