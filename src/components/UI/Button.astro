@@ -1,6 +1,7 @@
 ---
 interface Props {
   title: string;
+  type?: 'button' | 'submit';
   icon?: string;
   iconPosition?: 'left' | 'right';
   basic?: boolean;
@@ -10,21 +11,32 @@ interface Props {
   arrowIcon?: boolean;
 }
 
-const { title, icon, iconPosition = 'left', basic = true, href, internal_link = true, small = false, arrowIcon = false } = Astro.props;
+const { title, type = 'button', icon, iconPosition = 'left', basic = true, href, internal_link = true, small = false, arrowIcon = false } = Astro.props;
 ---
 
-<a 
-    href={href}
-    target={internal_link ? "_self" : "_blank"}
-    class={`${basic ? "basic" : "primary"} ${small ? "small" : "large"} ${arrowIcon ? "arrow-icon" : "button"}`}
->
-    {icon && iconPosition === 'left' && <i class={icon} />}
-    {title}
-    {icon && iconPosition === 'right' && <i class={icon} />}
-</a>
+{type == 'submit' ? (
+     <button 
+        type="submit"
+        class={`${basic ? "basic" : "primary"} ${small ? "small" : "large"} ${arrowIcon ? "arrow-icon" : "button"}`}
+    >
+        {icon && iconPosition === 'left' && <i class={icon} />}
+        {title}
+        {icon && iconPosition === 'right' && <i class={icon} />}
+    </button>
+) : (
+    <a 
+        href={href}
+        target={internal_link ? "_self" : "_blank"}
+        class={`${basic ? "basic" : "primary"} ${small ? "small" : "large"} ${arrowIcon ? "arrow-icon" : "button"}`}
+    >
+        {icon && iconPosition === 'left' && <i class={icon} />}
+        {title}
+        {icon && iconPosition === 'right' && <i class={icon} />}
+    </a>
+)}
 
 <style>
-    a {
+    a, button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -41,7 +53,7 @@ const { title, icon, iconPosition = 'left', basic = true, href, internal_link = 
         background-color: var(--primary-color-dark);
     }
 
-    a.basic {
+    a.basic, button.basic {
         background-color: var(--secondary-color);
         outline: 1px solid rgba(from var(--text-color-secondary) r g b / 0.1);
         color: var(--text-color);
@@ -53,64 +65,77 @@ const { title, icon, iconPosition = 'left', basic = true, href, internal_link = 
         color: var(--text-color-dark);
     }
 
-    a.primary {
+    a.primary, button.primary {
         background-color: var(--primary-color);
         color: var(--custom-white);
     }
 
-    html.dark a.primary {
+    html.dark a.primary,
+    html.dark button.primary {
         background-color: var(--primary-color-dark);
         color: var(--custom-dark);
     }
 
-    a.small {
+    a.small, button.small {
         font-size: 1rem;
         padding: 8px 24px;
     }
 
-    a.large {
+    a.large, button.large {
         font-size: 1.2rem;
         padding: 12px 24px;
     }
     
     a.arrow-icon,
-    a.button {
+    a.button,
+    button.arrow-icon,
+    button.button {
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     }
 
     a.arrow-icon:hover, 
-    a.button:hover {
+    a.button:hover,
+    button.arrow-icon:hover, 
+    button.button:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 6px var(--shadow-color);
     }
     
     html.dark a.button:hover,
-    a.button:hover {
+    a.button:hover,
+    html.dark button.button:hover,
+    button.button:hover {
         box-shadow: 0 4px 6px var(--shadow-color-dark);
     }
 
-     a.arrow-icon i {
-        transition: transform 0.3s ease;
+    a.arrow-icon:hover, button.arrow-icon:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px var(--shadow-color);
     }
 
-    a.arrow-icon:hover i {
+    a.arrow-icon i, button.arrow-icon i {
+        transition: all 0.3s ease;
+    }
+
+    a.arrow-icon:hover i, button.arrow-icon:hover i {
         transform: translateX(4px);
     }
 
-    a.basic:hover {
+    a.basic:hover, button.basic:hover {
         outline: 1px solid rgb(from var(--primary-color) r g b / 0.5);
     }
 
-    html.dark a.basic:hover {
+    html.dark a.basic:hover,
+    html.dark button.basic:hover {
         outline: 1px solid rgb(from var(--primary-color-dark) r g b / 0.5);
     }
 
-    a:active {
+    a:active, button:active {
         transform: scale(0.95);
     }
 
     @media(max-width: 1024px) {
-        a {
+        a, button {
             padding: 10px 20px;
         }
     }

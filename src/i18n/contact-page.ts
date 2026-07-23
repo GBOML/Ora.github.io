@@ -19,4 +19,5 @@ export default {
     },
     button: { text: "Submit" },
   },
+  success_message: "Message sent successfully!",
 };

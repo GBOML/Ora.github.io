@@ -6,6 +6,8 @@
   --secondary-color: #edeeef;
   --background-color: #f7f9fb;
   --text-color: #121417;
+  --text-important: #d31b76;
+  --success-color: #6ab415;
 
   --text-color-secondary: #3b494b;
   --border-color: #a9b3b6;
@@ -28,6 +30,7 @@
   --secondary-color-dark: #0f1c2e;
   --shadow-color-dark: rgba(0, 188, 212, 0.15);
   --border-color-dark: #1a2b3c;
+  --success-color-dark: #9ed636;
 }
 
 * {

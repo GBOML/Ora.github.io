@@ -3,7 +3,7 @@ import Button from "./UI/Button.astro";
 import t from "../i18n/contact-page.ts";
 ---
 
-<form>
+<form id="contact-form">
     <div class="form-grid">
         <div class="form-group">
             <label for="name">{t.form.name_input.label}</label>
@@ -29,12 +29,54 @@ import t from "../i18n/contact-page.ts";
         <textarea id="message" name="message" placeholder={t.form.message_input.placeholder} required></textarea>
     </div>
 
-    <div class="form-footer">
-        <Button arrowIcon={true} title={t.form.button.text} basic={false} icon="fa-solid fa-arrow-right" iconPosition="right"/>
+    <div class="form-footer" style="justify-content: flex-end;">
+            <p id="success-message" style="display: none; margin-right: 20px;"> {t.success_message} </p>
+        <Button type="submit" arrowIcon={true} title="Send" basic={false} icon="fa-solid fa-arrow-right" iconPosition="right"/>
     </div>
 </form>
 
+<script>
+    const form = document.getElementById('contact-form');
+    const successMessage = document.getElementById('success-message');
+
+    if (!(form instanceof HTMLFormElement) || !(successMessage instanceof HTMLElement)) {
+        throw new Error("Unable to find form or success message element");
+    }
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+
+        const response = await fetch("http://formspree.io/f/xeebwpee", {
+            method: "POST",
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            },
+        });
+
+        if (response.ok) {
+            successMessage.style.display = 'block';
+            form.reset();
+        } else {
+            successMessage.style.display = 'none';
+            alert('There was a problem submitting your form. Please try again.');
+        }
+
+    })
+</script>
+
 <style>
+    #success-message {
+        color: var(--success-color);
+        letter-spacing: 0.5px;
+    }
+
+    html.dark #success-message {
+        color: var(--success-color-dark);
+    }
+
     form {
         background-color: var(--custom-white);
         border: 1px solid var(--border-color);
@@ -123,7 +165,7 @@ import t from "../i18n/contact-page.ts";
 
     .form-footer {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
         margin-top: 20px;
         padding-top: 24px;
@@ -142,6 +184,10 @@ import t from "../i18n/contact-page.ts";
         opacity: 0.6;
     }
 
+
+    .success-message {
+        color: var(--text-important);
+    }
 
     @media(max-width: 768px) {
         form {
