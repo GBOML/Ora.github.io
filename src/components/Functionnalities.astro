@@ -7,7 +7,7 @@ import functionalities_space_light from "../assets/screenshots/light/functionali
 import functionalities_space_dark from "../assets/screenshots/dark/functionalities-space.png";
 import functionalities_report_light from "../assets/screenshots/light/functionalities-report.png";
 import functionalities_report_dark from "../assets/screenshots/dark/functionalities-report.png";
-import ImageLightDark from './UI/ImageLightDark.astro';
+import ImageScreen from './UI/ImageScreen.astro';
 ---
 
 <section id="#functionnalities">
@@ -42,14 +42,14 @@ import ImageLightDark from './UI/ImageLightDark.astro';
         </div>
 
         <span class="flex justify-center">
-             <ImageLightDark image={functionalities_model_light} imageDark={functionalities_model_dark} height={400} imageAlt="data node"/>
+             <ImageScreen image={functionalities_model_light} imageDark={functionalities_model_dark} contentHeight={"350px"} imageAlt="data node"/>
         </span>
     </div>
 
     <!-- Space section -->
     <div class="wrapper">
         <span class="flex justify-center">
-            <ImageLightDark image={functionalities_space_light} imageDark={functionalities_space_dark} height={400} imageAlt="space"/>
+            <ImageScreen image={functionalities_space_light} imageDark={functionalities_space_dark} contentHeight={"350px"} imageAlt="space"/>
         </span>
 
         <div>
@@ -100,7 +100,7 @@ import ImageLightDark from './UI/ImageLightDark.astro';
         </div>
 
         <span class="flex justify-center">
-            <ImageLightDark image={functionalities_report_light} imageDark={functionalities_report_dark} height={400} imageAlt="report"/>
+            <ImageScreen image={functionalities_report_light} imageDark={functionalities_report_dark} contentHeight={"350px"} imageAlt="report"/>
         </span>
     </div>
 </section>
@@ -117,14 +117,14 @@ import ImageLightDark from './UI/ImageLightDark.astro';
 
     .wrapper {
         display: grid;
-        grid-template-columns: 1.5fr 2.5fr;
+        grid-template-columns: 2.5fr 3.5fr;
         grid-template-rows: repeat(2, auto);
-        gap: 50px;
+        gap: 30px;
         align-items: center;
     }
 
     .wrapper:nth-child(even) {
-        grid-template-columns: 2.5fr 1.5fr;
+        grid-template-columns: 3.5fr 2.5fr;
     }
 
     .wrapper h2 {
@@ -135,10 +135,6 @@ import ImageLightDark from './UI/ImageLightDark.astro';
 
     html.dark .wrapper h2 {
         color: var(--primary-color-dark);
-    }
-
-    .wrapper .image {
-        object-fit: cover;
     }
 
     .section-content {
