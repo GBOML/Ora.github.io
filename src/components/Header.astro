@@ -2,10 +2,17 @@
 const currentPath = Astro.url.pathname;
 import sharedLink from '../assets/shared_link.json';
 import ThemeToggle from './UI/ThemeToggle.astro';
+
+export const links = [
+    { name: 'Home', href: `/${sharedLink.base}` },
+    // { name: 'Functionalities', href: `/${sharedLink.base}/functionalities` },
+    // { name: 'Team', href: `/${sharedLink.base}/team` },
+    { name: 'Contact', href: `/${sharedLink.base}/contact` },
+];
 ---
 
 <header>
-     <button class="menu-button" aria-label="Toggle navigation menu">
+    <button class="menu-button" aria-label="Toggle navigation menu" aria-expanded="false">
         <i class="fa-solid fa-bars"></i>
         <i class="fa-solid fa-xmark"></i>
     </button>
@@ -16,10 +23,11 @@ import ThemeToggle from './UI/ThemeToggle.astro';
     
     <nav id="mobile-menu" class="mobile-menu">
         <ul>
-            <li><a href={`/${sharedLink.base}`} class={currentPath === `/${sharedLink.base}` ? 'active' : ''}>Home</a></li>
-            <li><a href={`/${sharedLink.base}/functionalities`} class={currentPath === `/${sharedLink.base}/functionalities` ? 'active' : ''}>Functionalities</a></li>
-            <li><a href={`/${sharedLink.base}/team`} class={currentPath === `/${sharedLink.base}/team` ? 'active' : ''}>Team</a></li>
-            <li><a href={`/${sharedLink.base}/contact`} class={currentPath === `/${sharedLink.base}/contact` ? 'active' : ''}>Contact</a></li>
+            {links.map(link => (
+                <li>
+                    <a href={link.href} class={currentPath === link.href ? 'active' : ''}>{link.name}</a>
+                </li>
+            ))}
         </ul>
 
         <div class="theme-toggle-mobile">
@@ -29,10 +37,11 @@ import ThemeToggle from './UI/ThemeToggle.astro';
 
     <nav class="desktop-nav">
         <ul>
-            <li><a href={`/${sharedLink.base}`} class={currentPath === `/${sharedLink.base}` ? 'active' : ''}>Home</a></li>
-            <li><a href={`/${sharedLink.base}/functionalities`} class={currentPath === `/${sharedLink.base}/functionalities` ? 'active' : ''}>Functionalities</a></li>
-            <li><a href={`/${sharedLink.base}/team`} class={currentPath === `/${sharedLink.base}/team` ? 'active' : ''}>Team</a></li>
-            <li><a href={`/${sharedLink.base}/contact`} class={currentPath === `/${sharedLink.base}/contact` ? 'active' : ''}>Contact</a></li>
+            {links.map(link => (
+                <li>
+                    <a href={link.href} class={currentPath === link.href ? 'active' : ''}>{link.name}</a>
+                </li>
+            ))}
         </ul>
     </nav>
 
@@ -47,30 +56,45 @@ import ThemeToggle from './UI/ThemeToggle.astro';
     const menuButton = document.querySelector('.menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
 
+    const closeMobileMenu = () => {
+        menuButton?.classList.remove('active');
+        menuButton?.setAttribute('aria-expanded', 'false');
+        mobileMenu?.classList.remove('show');
+    };
+
+    const openMobileMenu = () => {
+        menuButton?.classList.add('active');
+        menuButton?.setAttribute('aria-expanded', 'true');
+        mobileMenu?.classList.add('show');
+    };
+
     menuButton?.addEventListener('click', () => {
-        menuButton.classList.toggle('active');
-        mobileMenu?.classList.toggle('show');
+        const isOpen = mobileMenu?.classList.contains('show');
+
+        if (isOpen) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
     });
 
-    // Close mobile menu when a link is clicked
     const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+
     mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            menuButton?.classList.remove('active');
-            mobileMenu?.classList.remove('show');
-        });
+        link.addEventListener('click', closeMobileMenu);
     });
 
-    // Hide/show header au scroll
     window.addEventListener('scroll', () => {
         const scrollTop = window.scrollY;
-        
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
+
+        if (scrollTop > lastScrollTop && scrollTop > 50) {
             header?.classList.add('hide-header');
+
+            closeMobileMenu();
         } else {
             header?.classList.remove('hide-header');
         }
-        
+
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
 </script>
@@ -90,7 +114,7 @@ import ThemeToggle from './UI/ThemeToggle.astro';
         transition: transform 0.3s ease-in-out;
         z-index: 1000;
     }
-    
+
     html.dark header {
         background-color: var(--custom-black);
         box-shadow: 0 2px 4px var(--shadow-color-dark);
@@ -113,6 +137,7 @@ import ThemeToggle from './UI/ThemeToggle.astro';
 
     .menu-button i {
         width: 24px;
+        transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
     .menu-button i:nth-child(2) {
@@ -137,8 +162,7 @@ import ThemeToggle from './UI/ThemeToggle.astro';
 
     .mobile-menu {
         font-size: 0.7rem;
-        display: none;
-        opacity: 0;
+        display: flex;
         position: absolute;
         top: 100%;
         left: 0;
@@ -147,27 +171,41 @@ import ThemeToggle from './UI/ThemeToggle.astro';
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 10px 30px;
+        padding: 0 30px;
         max-height: 0;
+        opacity: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease-in-out;
+        visibility: hidden;
+        border-top: 1px solid transparent;
+        transition:
+            max-height 0.3s ease-in-out,
+            opacity 0.2s ease-in-out,
+            padding 0.3s ease-in-out,
+            border-color 0.3s ease-in-out,
+            visibility 0s linear 0.3s;
     }
 
     html.dark .mobile-menu {
         background-color: var(--secondary-color-dark);
     }
 
-    
     .mobile-menu.show {
-        border-top: 1px solid var(--border-color);
         max-height: 200px;
         opacity: 1;
+        visibility: visible;
+        padding: 10px 30px;
+        border-top: 1px solid var(--border-color);
+        transition:
+            max-height 0.3s ease-in-out,
+            opacity 0.2s ease-in-out,
+            padding 0.3s ease-in-out,
+            border-color 0.3s ease-in-out,
+            visibility 0s linear 0s;
     }
 
     html.dark .mobile-menu.show {
-        border-top: 1px solid var(--border-color-dark);
+        border-top-color: var(--border-color-dark);
     }
-
 
     .mobile-menu ul {
         flex-direction: column;
@@ -183,7 +221,7 @@ import ThemeToggle from './UI/ThemeToggle.astro';
     ul {
         list-style: none;
         display: flex;
-        gap: 20px;
+        gap: 40px;
         padding: 0;
         margin: 0;
         font-size: 1rem;
@@ -211,7 +249,6 @@ import ThemeToggle from './UI/ThemeToggle.astro';
         background: var(--primary-color-dark);
     }
 
-
     li > a:hover,
     li > a.active {
         color: var(--primary-color);
@@ -230,13 +267,13 @@ import ThemeToggle from './UI/ThemeToggle.astro';
     .theme-toggle-mobile {
         display: none;
         margin-top: 1rem;
-    }   
+    }
 
     .theme-toggle-desktop {
         display: block;
     }
 
-    @media(max-width: 1024px) {
+    @media (max-width: 1024px) {
         header {
             display: grid;
             grid-template-columns: 1fr auto 1fr;

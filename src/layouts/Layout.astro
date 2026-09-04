@@ -2,6 +2,9 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import "../style/global.css";
+import sharedLink from '../assets/shared_link.json';
+
+const isHomePage = Astro.url.pathname === `/${sharedLink.base}/`;
 ---
 
 <!doctype html>
@@ -30,7 +33,8 @@ import "../style/global.css";
 		</script>
 
 	</head>
-	<body>
+	
+	<body class:list={{ "home-page": isHomePage }}>
 		<Header />
 
 		<slot />
@@ -54,7 +58,35 @@ import "../style/global.css";
 	html.dark body {
 		color: var(--text-color-dark);
 		background-color: var(--custom-black);
+	}
 
+	body.home-page {
+		position: relative;
+		isolation: isolate;
+	}
+
+	body.home-page::before {
+		content: "";
+		position: absolute;
+		inset: 0 0 auto 0;
+		height: 1000px;
+
+		background: radial-gradient(
+			circle at 50% 30%,
+			rgb(from var(--primary-color) r g b / 0.3) 0%,
+			var(--background-color) 50%
+		);
+
+		z-index: -1;
+		pointer-events: none;
+	}
+
+	html.dark body.home-page::before {
+		background: radial-gradient(
+			circle at 50% 30%,
+			rgb(from var(--primary-color-dark) r g b / 0.3) 0%,
+			var(--background-color-dark) 55%
+		);
 	}
 
 	@media (max-width: 1024px) {
