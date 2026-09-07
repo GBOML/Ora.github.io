@@ -21,8 +21,8 @@ const { title, content, icon, iconCircle = false, small = true, image, imageDark
 <div class="container">
     {image && imageDark && imagePosition === 'left' && 
         <div class="image-wrapper image-left">
-            <ImageLightDark image={image} imageDark={imageDark} height={400} imageAlt={imageAlt} 
-                customStyle={`height: ${image ? '100%':  "80px"}; width: ${image ? '':  "80px"}; ${image ? 'object-fit: cover;' : ''}'`}
+            <ImageLightDark image={image} imageDark={imageDark} imageAlt={imageAlt} 
+                customStyle={`${image ? 'object-fit: cover;' : ''}'`}
             />
         </div>
     }
@@ -40,8 +40,8 @@ const { title, content, icon, iconCircle = false, small = true, image, imageDark
 
     {image && imageDark && imagePosition === 'right' && 
         <div class="image-wrapper image-right">
-            <ImageLightDark image={image} imageDark={imageDark} height={400} imageAlt={imageAlt} 
-                customStyle={`height: ${image ? '100%':  "80px"}; width: ${image ? '':  "80px"}; ${image ? 'object-fit: cover;' : ''}'`}
+            <ImageLightDark image={image} imageDark={imageDark} imageAlt={imageAlt} 
+                customStyle={`${image ? 'object-fit: cover;' : ''}'`}
             />
         
         </div>
@@ -86,7 +86,8 @@ const { title, content, icon, iconCircle = false, small = true, image, imageDark
         overflow: hidden;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-end;
+        width: 80%
     }
 
     .container:hover .card-image {

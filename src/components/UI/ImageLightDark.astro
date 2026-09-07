@@ -13,8 +13,25 @@ interface Props {
 let { image, imageDark, customClass, customStyle, height, imageAlt} = Astro.props as Props;
 ---
 
-<Image src={image} alt={imageAlt} class={`image ${customClass || ''}`} height={`${height ?? 400}`} style={customStyle} />
-<Image src={imageDark} alt={imageAlt} class={`image-dark ${customClass || ''}`} height={`${height ?? 400}`} style={customStyle} />
+<Image
+    src={image}
+    alt={imageAlt}
+    class={`image ${customClass || ''}`}
+    style={customStyle}
+    layout="constrained"
+    width={image.width}
+    height={image.height}
+/>
+
+<Image
+    src={imageDark}
+    alt={imageAlt}
+    class={`image-dark ${customClass || ''}`}
+    style={customStyle}
+    layout="constrained"
+    width={imageDark.width}
+    height={imageDark.height}
+/>
 
 <style>
     .image-dark {
