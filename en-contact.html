@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--
+  French version: contact.html, to be placed in the same folder as this page.
+-->
+    <title>Describe my challenge | Ora</title>
+    <meta
+      name="description"
+      content="Describe your investment or optimisation challenge and we will come back to you with a first draft model."
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #101c2d;
+        --deep: #0b2a4f;
+        --blue: #1e63c8;
+        --flux: #f26a3d;
+        --mist: #eef2f8;
+        --line: #cbd3de;
+        --muted: #4a5768;
+        --white: #ffffff;
+        --success: #1f8a5b;
+        --error: #c0392b;
+        --head: "Sora", "IBM Plex Sans", system-ui, sans-serif;
+        --body:
+          "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+        --gutter: 24px;
+        --wrap: 1180px;
+        --radius: 14px;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--white);
+        color: var(--ink);
+        font-family: var(--body);
+        font-size: 1.0625rem;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      main {
+        flex: 1;
+      }
+      a {
+        color: var(--blue);
+      }
+      h1,
+      h2 {
+        font-family: var(--head);
+        font-weight: 700;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        margin: 0;
+      }
+      p {
+        margin: 0;
+      }
+      ol {
+        margin: 0;
+        padding: 0;
+      }
+      :focus-visible {
+        outline: 3px solid var(--flux);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+      .wrap {
+        max-width: var(--wrap);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+      }
+      .label {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #8fb6f2;
+        margin-bottom: 14px;
+      }
+      .skip {
+        position: absolute;
+        left: -9999px;
+        top: 8px;
+        background: var(--ink);
+        color: #fff;
+        padding: 10px 16px;
+        border-radius: 8px;
+        z-index: 100;
+      }
+      .skip:focus {
+        left: 16px;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-family: var(--body);
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        padding: 14px 22px;
+        border-radius: 999px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition:
+          background-color 0.2s,
+          color 0.2s,
+          border-color 0.2s;
+        white-space: nowrap;
+      }
+      .btn-primary {
+        background: var(--flux);
+        color: var(--ink);
+      }
+      .btn-primary:hover {
+        background: #ff7d52;
+      }
+      .btn[disabled] {
+        opacity: 0.6;
+        cursor: progress;
+      }
+
+      /* Header */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: saturate(1.4) blur(10px);
+        -webkit-backdrop-filter: saturate(1.4) blur(10px);
+        border-bottom: 1px solid rgba(203, 211, 222, 0.7);
+      }
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 72px;
+        gap: 24px;
+      }
+      .brand {
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: var(--ink);
+        font-family: var(--head);
+        font-weight: 700;
+        font-size: 1.12rem;
+        letter-spacing: -0.01em;
+      }
+      .brand svg {
+        flex: none;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-left: auto;
+      }
+      .nav a {
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: 999px;
+      }
+      .nav a:hover {
+        background: var(--mist);
+      }
+      .nav .btn {
+        margin-left: 10px;
+        padding: 10px 18px;
+      }
+      .nav .btn:hover {
+        background: #ff7d52;
+      }
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--ink);
+      }
+      .lang {
+        display: flex;
+        gap: 2px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 3px;
+        flex: none;
+      }
+      .lang a {
+        font-size: 0.85rem;
+        font-weight: 600;
+        line-height: 1;
+        padding: 7px 10px;
+        border-radius: 999px;
+        text-decoration: none;
+        color: var(--muted);
+      }
+      .lang a:hover {
+        color: var(--ink);
+        background: var(--mist);
+      }
+      .lang a[aria-current="page"] {
+        background: var(--ink);
+        color: #fff;
+      }
+
+      /* Contact */
+      .contact-page {
+        background: var(--deep);
+        color: #fff;
+        padding: 104px 0;
+      }
+      .contact-inner {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 64px;
+        align-items: start;
+      }
+      .contact-page h1 {
+        font-size: clamp(2.1rem, 4vw, 3.25rem);
+        letter-spacing: -0.03em;
+        max-width: 16ch;
+      }
+      .contact-intro {
+        margin-top: 20px;
+        color: #c3cdda;
+        font-size: 1.15rem;
+        max-width: 46ch;
+      }
+      .steps {
+        list-style: none;
+        display: grid;
+        gap: 14px;
+        margin-top: 36px;
+        counter-reset: c;
+      }
+      .steps li {
+        counter-increment: c;
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 12px;
+        color: #dce3ec;
+      }
+      .steps li::before {
+        content: counter(c);
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--flux);
+        color: var(--ink);
+        font-weight: 600;
+        font-size: 0.9rem;
+        display: grid;
+        place-items: center;
+      }
+      .contact-mail {
+        margin-top: 32px;
+        font-size: 0.95rem;
+        color: #c3cdda;
+      }
+      .contact-mail a {
+        color: #fff;
+        overflow-wrap: anywhere;
+      }
+
+      /* Form */
+      .form-card {
+        background: var(--white);
+        color: var(--ink);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.5);
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px 24px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .field.full {
+        grid-column: 1 / -1;
+      }
+      .field label {
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+      .field .opt {
+        font-weight: 400;
+        color: var(--muted);
+      }
+      .field input,
+      .field textarea {
+        font: inherit;
+        font-size: 1rem;
+        color: var(--ink);
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 12px 14px;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .field textarea {
+        min-height: 180px;
+        resize: vertical;
+      }
+      .field input::placeholder,
+      .field textarea::placeholder {
+        color: var(--muted);
+        opacity: 0.7;
+      }
+      .field input:focus,
+      .field textarea:focus {
+        outline: none;
+        border-color: var(--blue);
+        box-shadow: 0 0 0 3px rgba(30, 99, 200, 0.18);
+      }
+      .form-footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 28px;
+      }
+      .form-status {
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      .form-status.ok {
+        color: var(--success);
+      }
+      .form-status.err {
+        color: var(--error);
+      }
+      .form-footer .btn {
+        margin-left: auto;
+      }
+
+      /* Footer */
+      .site-footer {
+        background: var(--ink);
+        color: #c3cdda;
+        padding: 40px 0;
+        font-size: 0.95rem;
+      }
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .site-footer .brand {
+        color: #fff;
+      }
+      .footer-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 22px;
+      }
+      .footer-nav a {
+        color: #c3cdda;
+        text-decoration: none;
+      }
+      .footer-nav a:hover {
+        color: #fff;
+      }
+
+      /* Responsive */
+      @media (max-width: 1000px) {
+        .contact-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+      }
+      @media (max-width: 820px) {
+        .menu-toggle {
+          display: inline-flex;
+          margin-left: 4px;
+        }
+        .lang {
+          margin-left: auto;
+        }
+        .nav {
+          display: none;
+          position: absolute;
+          top: 72px;
+          left: 0;
+          right: 0;
+          background: #fff;
+          flex-direction: column;
+          align-items: stretch;
+          padding: 12px var(--gutter) 20px;
+          border-bottom: 1px solid var(--line);
+          gap: 2px;
+        }
+        .nav.open {
+          display: flex;
+        }
+        .nav a {
+          padding: 12px 8px;
+          border-radius: 8px;
+        }
+        .nav .btn {
+          margin: 10px 0 0;
+          border-radius: 999px;
+        }
+      }
+      @media (max-width: 600px) {
+        :root {
+          --gutter: 16px;
+        }
+        body {
+          font-size: 1rem;
+        }
+        .contact-page {
+          padding: 64px 0 72px;
+        }
+        .form-card {
+          padding: 26px 20px;
+          border-radius: 16px;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+        .form-footer .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="en.html" aria-label="Ora, home">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 448 512"
+          >
+            <!--! Font Awesome Pro 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2024 Fonticons, Inc. -->
+            <path
+              d="M224 88a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm64-24c0 26.9-16.5 49.9-40 59.3l0 73.3c23.5 9.5 40 32.5 40 59.3c0 3.4-.3 6.7-.8 10l58.2 34.9c4.5-3.4 9.4-6.1 14.5-8.2l0-73.3c-5.2-2.1-10-4.8-14.5-8.2l-29.4 17.6c-4.7-15.8-13.3-29.9-24.7-41.1l29.4-17.6c-4-25.4 7.7-51.7 31.2-65.4c30.6-17.7 69.8-7.2 87.4 23.4s7.2 69.8-23.4 87.4c-2.6 1.5-5.3 2.8-8 3.9l0 73.3c2.7 1.1 5.4 2.4 8 3.9c30.6 17.7 41.1 56.8 23.4 87.4s-56.8 41.1-87.4 23.4c-23.6-13.6-35.2-40-31.2-65.4l-58.2-34.9c-4.4 3.3-9.3 6.1-14.5 8.2l0 73.3c23.5 9.5 40 32.5 40 59.3c0 35.3-28.7 64-64 64s-64-28.7-64-64c0-26.9 16.5-49.9 40-59.3l0-73.3c-23.5-9.5-40-32.5-40-59.3c0-3.4 .3-6.7 .8-10l-58.2-34.9c-4.5 3.4-9.4 6.1-14.6 8.2l0 73.3c5.1 2.1 10 4.8 14.5 8.2l29.4-17.6c4.7 15.8 13.3 29.9 24.7 41.1L127.2 342c4 25.4-7.6 51.8-31.2 65.4C65.4 425.1 26.3 414.6 8.6 384S1.4 314.3 32 296.6c2.6-1.5 5.3-2.8 8-3.9l0-73.3c-2.7-1.1-5.4-2.4-8-3.9C1.4 197.8-9.1 158.6 8.6 128S65.4 86.9 96 104.6c23.6 13.6 35.2 40 31.2 65.4l58.2 34.9c4.4-3.3 9.3-6.1 14.5-8.2l0-73.3c-23.5-9.5-40-32.5-40-59.3c0-35.3 28.7-64 64-64s64 28.7 64 64zM224 280a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm172-99.2a24 24 0 1 0 -24-41.6 24 24 0 1 0 24 41.6zM84.8 172A24 24 0 1 0 43.2 148a24 24 0 1 0 41.6 24zM248 448a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM43.2 364a24 24 0 1 0 41.6-24A24 24 0 1 0 43.2 364zM396 331.2a24 24 0 1 0 -24 41.6 24 24 0 1 0 24-41.6z"
+            />
+          </svg>
+          Ora
+        </a>
+        <nav class="nav" id="nav" aria-label="Main navigation">
+          <a href="en.html#solution">Solution</a>
+          <a href="en.html#services">Services</a>
+          <a href="en.html#tools">Tools</a>
+          <a href="en.html#references">References</a>
+          <a class="btn btn-primary" href="#form">Contact us</a>
+        </nav>
+        <nav class="lang" aria-label="Language">
+          <a href="contact.html" lang="fr" hreflang="fr" aria-label="Français"
+            >FR</a
+          >
+          <a href="en-contact.html" lang="en" hreflang="en" aria-current="page"
+            >EN</a
+          >
+        </nav>
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="nav"
+          aria-label="Open menu"
+          data-open="Open menu"
+          data-close="Close menu"
+        >
+          <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+            <path
+              d="M3 6h16M3 11h16M3 16h16"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="contact-page" aria-labelledby="contact-title">
+        <div class="wrap contact-inner">
+          <div>
+            <p class="label">Contact</p>
+            <h1 id="contact-title">Tell us about your challenge</h1>
+            <p class="contact-intro">
+              Which investment or optimisation challenge weighs most on your
+              company today? Fill in this form and we will come back to you with
+              a first draft model.
+            </p>
+            <ol class="steps">
+              <li>You describe your challenge.</li>
+              <li>We propose a first draft.</li>
+              <li>We discuss it together.</li>
+            </ol>
+            <p class="contact-mail">
+              Prefer email? Write to
+              <a href="mailto:bmiftari@uliege.be">bmiftari@uliege.be</a>
+            </p>
+          </div>
+
+          <div class="form-card" id="form">
+            <form
+              id="contact-form"
+              action="https://formspree.io/f/mrpggojv"
+              method="POST"
+              data-error="There was a problem sending your message. Please try again."
+              data-success="Message sent successfully! We will get back to you shortly."
+            >
+              <div class="form-grid">
+                <div class="field">
+                  <label for="name">Full name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Jane Doe"
+                    autocomplete="name"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="jane@company.com"
+                    autocomplete="email"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="organisation"
+                    >Organisation <span class="opt">(optional)</span></label
+                  >
+                  <input
+                    type="text"
+                    id="organisation"
+                    name="organisation"
+                    placeholder="Company or institution"
+                    autocomplete="organization"
+                  />
+                </div>
+                <div class="field">
+                  <label for="subject"
+                    >Subject <span class="opt">(optional)</span></label
+                  >
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    placeholder="E.g. sizing a district heating network"
+                  />
+                </div>
+                <div class="field full">
+                  <label for="message">Your challenge</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Describe your context, your constraints and the decisions you need to make…"
+                    required
+                  ></textarea>
+                </div>
+              </div>
+              <div class="form-footer">
+                <p
+                  class="form-status"
+                  id="form-status"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+                <button type="submit" class="btn btn-primary">
+                  Send
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M2 8h11M9 4l4 4-4 4"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <a class="brand" href="en.html" aria-label="Ora, home">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 448 512"
+            fill="#FFFFFF"
+            aria-hidden="true"
+          >
+            <!--! Font Awesome Pro 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2024 Fonticons, Inc. -->
+            <path
+              d="M224 88a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm64-24c0 26.9-16.5 49.9-40 59.3l0 73.3c23.5 9.5 40 32.5 40 59.3c0 3.4-.3 6.7-.8 10l58.2 34.9c4.5-3.4 9.4-6.1 14.5-8.2l0-73.3c-5.2-2.1-10-4.8-14.5-8.2l-29.4 17.6c-4.7-15.8-13.3-29.9-24.7-41.1l29.4-17.6c-4-25.4 7.7-51.7 31.2-65.4c30.6-17.7 69.8-7.2 87.4 23.4s7.2 69.8-23.4 87.4c-2.6 1.5-5.3 2.8-8 3.9l0 73.3c2.7 1.1 5.4 2.4 8 3.9c30.6 17.7 41.1 56.8 23.4 87.4s-56.8 41.1-87.4 23.4c-23.6-13.6-35.2-40-31.2-65.4l-58.2-34.9c-4.4 3.3-9.3 6.1-14.5 8.2l0 73.3c23.5 9.5 40 32.5 40 59.3c0 35.3-28.7 64-64 64s-64-28.7-64-64c0-26.9 16.5-49.9 40-59.3l0-73.3c-23.5-9.5-40-32.5-40-59.3c0-3.4 .3-6.7 .8-10l-58.2-34.9c-4.5 3.4-9.4 6.1-14.6 8.2l0 73.3c5.1 2.1 10 4.8 14.5 8.2l29.4-17.6c4.7 15.8 13.3 29.9 24.7 41.1L127.2 342c4 25.4-7.6 51.8-31.2 65.4C65.4 425.1 26.3 414.6 8.6 384S1.4 314.3 32 296.6c2.6-1.5 5.3-2.8 8-3.9l0-73.3c-2.7-1.1-5.4-2.4-8-3.9C1.4 197.8-9.1 158.6 8.6 128S65.4 86.9 96 104.6c23.6 13.6 35.2 40 31.2 65.4l58.2 34.9c4.4-3.3 9.3-6.1 14.5-8.2l0-73.3c-23.5-9.5-40-32.5-40-59.3c0-35.3 28.7-64 64-64s64 28.7 64 64zM224 280a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm172-99.2a24 24 0 1 0 -24-41.6 24 24 0 1 0 24 41.6zM84.8 172A24 24 0 1 0 43.2 148a24 24 0 1 0 41.6 24zM248 448a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM43.2 364a24 24 0 1 0 41.6-24A24 24 0 1 0 43.2 364zM396 331.2a24 24 0 1 0 -24 41.6 24 24 0 1 0 24-41.6z"
+            />
+          </svg>
+          Ora
+        </a>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="en.html#solution">Solution</a>
+          <a href="en.html#services">Services</a>
+          <a href="en.html#tools">Tools</a>
+          <a href="en.html#references">References</a>
+          <a href="en-contact.html">Contact</a>
+        </nav>
+        <p>© 2026 Ora</p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var btn = document.querySelector(".menu-toggle"),
+          nav = document.getElementById("nav");
+        if (!btn || !nav) return;
+        function setOpen(o) {
+          nav.classList.toggle("open", o);
+          btn.setAttribute("aria-expanded", o ? "true" : "false");
+          btn.setAttribute(
+            "aria-label",
+            o ? btn.dataset.close : btn.dataset.open,
+          );
+        }
+        btn.addEventListener("click", function () {
+          setOpen(!nav.classList.contains("open"));
+        });
+        nav.addEventListener("click", function (e) {
+          if (e.target.closest("a")) setOpen(false);
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") setOpen(false);
+        });
+      })();
+
+      (function () {
+        var form = document.getElementById("contact-form"),
+          status = document.getElementById("form-status");
+        if (!form || !status) return;
+        var submit = form.querySelector('button[type="submit"]');
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          status.className = "form-status";
+          status.textContent = "";
+          submit.disabled = true;
+
+          fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { Accept: "application/json" },
+          })
+            .then(function (res) {
+              if (!res.ok) throw new Error(res.status);
+              status.className = "form-status ok";
+              status.textContent = form.dataset.success;
+              form.reset();
+            })
+            .catch(function () {
+              status.className = "form-status err";
+              status.textContent = form.dataset.error;
+            })
+            .then(function () {
+              submit.disabled = false;
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>
